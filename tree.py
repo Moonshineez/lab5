@@ -20,7 +20,7 @@ def ev(root):
     leftv, lefto = ev(root.left)
     rightv, righto = ev(root.right)
     if root.value == '+':
-        resu = leftv + rightv
+        res = leftv + rightv
     elif root.value == '-':
         res = leftv - rightv
     elif root.value == '*':
