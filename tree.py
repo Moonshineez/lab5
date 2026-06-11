@@ -1,32 +1,32 @@
-class Node:
+class N:
     def __init__(self, value):
         self.value = value  
         self.left = None    
         self.right = None   
-def build_expression_tree(tokens):
+def build(tokens):
     stack = []
     for token in tokens:
         if token in ('+', '-', '*', '/'):
-            root = Node(token)
+            root = N(token)
             root.right = stack.pop()
             root.left = stack.pop()
             stack.append(root)
         else:
-            stack.append(Node(int(token)))
+            stack.append(N(int(token)))
     return stack[0]
-def evaluate(root):
+def ev(root):
     if root.left is None and root.right is None:
         return root.value, 0  
-    left_val, left_ops = evaluate(root.left)
-    right_val, right_ops = evaluate(root.right)
+    leftv, lefto = ev(root.left)
+    rightv, righto = ev(root.right)
     if root.value == '+':
-        result = left_val + right_val
+        resu = leftv + rightv
     elif root.value == '-':
-        result = left_val - right_val
+        res = leftv - rightv
     elif root.value == '*':
-        result = left_val * right_val
+        res = leftv * rightv
     elif root.value == '/':
-        result = left_val / right_val
-    total_ops = left_ops + right_ops + 1
-    return result, total_ops
+        res = leftv / rightv
+    total = lefto + righto + 1
+    return res, total
 
